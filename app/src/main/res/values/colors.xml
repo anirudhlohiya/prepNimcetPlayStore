@@ -1,5 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="gray_600">#6a707c</color>
+    <color name="bluegray_400">#8390a1</color>
+    <color name="indigo_50">#e8ecf4</color>
+    <color name="gray_900">#1e232c</color>
+    <color name="button_bg">#395886</color>
+    <color name="button_fg">#F0F3FA</color>
+    <color name="action_bar">#b1c9ef</color>
+    <color name="white_A700">#ffffff</color>
+    <color name="gray_300">#dadada</color>
+    <color name="gray_50">#f7f8f9</color>
+    <color name="cyan_400">#34c2c1</color>
 </resources>

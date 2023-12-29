@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <dimen name="_1pxh">1.1dp</dimen>
+    <dimen name="_8pxh">8.77dp</dimen>
+    <dimen name="_11pxh">12.06dp</dimen>
+  <dimen name="_12pxh">13.15dp</dimen>
+  <dimen name="_13pxh">14.25dp</dimen>
+  <dimen name="_14pxh">15.34dp</dimen>
+  <dimen name="_15pxh">16.44dp</dimen>
+  <dimen name="_16pxh">17.54dp</dimen>
+    <dimen name="_19pxh">20.82dp</dimen>
+  <dimen name="_20pxh">21.92dp</dimen>
+  <dimen name="_21pxh">23.02dp</dimen>
+  <dimen name="_22pxh">24.11dp</dimen>
+  <dimen name="_23pxh">25.21dp</dimen>
+    <dimen name="_26pxh">28.5dp</dimen>
+    <dimen name="_30pxh">32.88dp</dimen>
+    <dimen name="_36pxh">39.46dp</dimen>
+    <dimen name="_40pxh">43.84dp</dimen>
+  <dimen name="_41pxh">44.94dp</dimen>
+    <dimen name="_100pxh">109.6dp</dimen>
+    <dimen name="_105pxh">115.08dp</dimen>
+</resources>

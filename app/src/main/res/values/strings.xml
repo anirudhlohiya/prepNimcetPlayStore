@@ -1,3 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
     <string name="app_name">prepNimcet</string>
+    <string name="lbl_email">Email</string>
+    <string name="msg_don_t_have_an_a">Don\u2019t have an account? Register Now</string>
+    <string name="msg_alr_d_have_an_a">Already have an account? Login Now</string>
+    <string name="msg_confirm_passwor">Confirm password</string>
+    <string name="msg_verification">Verification Link Send!</string>
+    <string name="lbl_back_to_login">Back to Login</string>
+    <string name="msg_don_t_worry_it">"Don't worry! It occurs. Please enter the email address linked with your account."</string>
+    <string name="msg_agree_and_regis">Agree and Register</string>
+    <string name="lbl_or_login_with">Or Login with</string>
+    <string name="lbl_login">Login</string>
+    <string name="msg_continue_as_a_g">Continue as a guest</string>
+    <string name="msg_enter_your_pass">Enter your password</string>
+    <string name="msg_verification_detail">A verification link has been send successfully.</string>
+    <string name="msg_remember_passwo">Remember Password? Login</string>
+    <string name="msg_enter_your_emai">Enter your email</string>
+    <string name="lbl_password">Password</string>
+    <string name="msg_forgot_password">Forgot Password?</string>
+    <string name="lbl_send_code">Send Link</string>
+    <string name="msg_welcome_back_g">Welcome back! Glad to see you, Again!</string>
+    <string name="msg_create_account_g">Welcome! Ready to begin your journey with us...</string>
+    <string name="lbl_register">Register</string>
+    <string name="lbl_username">Name</string>
+    <string name="default_web_client_id">370632523024-253cb06vpd6epausbj12g9h7brj4nb5v.apps.googleusercontent.com</string>
 </resources>

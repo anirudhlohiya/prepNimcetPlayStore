@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/groupStylewhite_A700"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".activity_verification">
+
+    <ImageView
+        android:layout_width="@dimen/_100pxh"
+        android:layout_height="@dimen/_100pxh"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/_23pxh"
+        android:layout_marginTop="@dimen/_214pxv"
+        android:layout_marginEnd="@dimen/_23pxh"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_checkmark"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/img_checkmark" />
+
+    <TextView
+        style="@style/txtUrbanistromanbold26"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_23pxh"
+        android:layout_marginTop="@dimen/_32pxv"
+        android:layout_marginEnd="@dimen/_23pxh"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:singleLine="true"
+        android:text="@string/msg_verification"
+        tools:text="@string/msg_verification" />
+
+    <TextView
+        style="@style/txtUrbanistromanmedium15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_23pxh"
+        android:layout_marginTop="@dimen/_6pxv"
+        android:layout_marginEnd="@dimen/_23pxh"
+        android:gravity="center_horizontal"
+        android:text="@string/msg_verification_detail"
+        tools:text="@string/msg_verification_detail" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBackToLogin"
+        style="@style/btnSolidRounded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_23pxh"
+        android:layout_marginTop="@dimen/_28pxv"
+        android:layout_marginEnd="@dimen/_22pxh"
+        android:layout_marginBottom="@dimen/_20pxv"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingStart="@dimen/_30pxh"
+        android:paddingTop="@dimen/_19pxv"
+        android:paddingEnd="@dimen/_30pxh"
+        android:paddingBottom="@dimen/_19pxv"
+        android:singleLine="true"
+        android:text="@string/lbl_back_to_login"
+        android:textAllCaps="false"
+        tools:text="@string/lbl_back_to_login" />
+
+</LinearLayout>
