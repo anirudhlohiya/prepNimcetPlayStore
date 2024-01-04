@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/home_bar_icon"
+        android:icon="@drawable/home_icon"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/quiz_bar_icon"
+        android:icon="@drawable/quiz_icon"
+        android:title="@string/quiz" />
+    <item
+        android:id="@+id/mock_test_bar_icon"
+        android:icon="@drawable/mock_test"
+        android:title="@string/mock_test" />
+    <item
+        android:id="@+id/profile_bar_icon"
+        android:icon="@drawable/profile_icon"
+        android:title="@string/profile" />
+</menu>

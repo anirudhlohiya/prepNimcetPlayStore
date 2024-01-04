@@ -11,4 +11,13 @@
     <color name="gray_300">#dadada</color>
     <color name="gray_50">#f7f8f9</color>
     <color name="cyan_400">#34c2c1</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color1">#f0f3fa</color>
+    <color name="color2">#d5deef</color>
+    <color name="color3">#b1c9ef</color>
+    <color name="color4">#8aaee0</color>
+    <color name="color5">#628ecb</color>
+    <color name="color6">#395886</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

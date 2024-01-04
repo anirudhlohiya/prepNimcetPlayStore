@@ -43,5 +43,8 @@ class activity_welcome : AppCompatActivity() {
             startActivity(intent)
 //            finish()
         }
+        binding.guestUser.setOnClickListener {
+
+        }
     }
 }
