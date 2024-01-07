@@ -39,7 +39,7 @@ class activity_welcome : AppCompatActivity() {
 
         binding.btnRegister.setOnClickListener {
             // Start the RegisterActivity when the Register button is clicked
-            val intent = Intent(this, activity_registeer::class.java)
+            val intent = Intent(this, activity_register::class.java)
             startActivity(intent)
 //            finish()
         }

@@ -24,10 +24,13 @@
             android:name=".activity_verification"
             android:exported="false" />
         <activity
-            android:name=".activity_registeer"
+            android:name=".activity_register"
             android:exported="false" />
         <activity
             android:name=".activity_login"
+            android:exported="false" />
+        <activity
+            android:name=".DetailBlogActivity"
             android:exported="false" />
         <activity
             android:name=".activity_welcome"

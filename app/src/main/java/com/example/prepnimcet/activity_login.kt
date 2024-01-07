@@ -56,7 +56,7 @@ class activity_login : AppCompatActivity() {
         }
 
         binding.txtRegisterNow.setOnClickListener {
-            val intent = Intent(this, activity_registeer::class.java)
+            val intent = Intent(this, activity_register::class.java)
             startActivity(intent)
         }
 

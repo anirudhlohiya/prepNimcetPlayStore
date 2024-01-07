@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 
-class activity_registeer : AppCompatActivity() {
+class activity_register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisteerBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
