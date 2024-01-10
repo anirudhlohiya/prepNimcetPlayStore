@@ -10,23 +10,58 @@
 
     <TextView
         android:id="@+id/detailed_blog_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_8dp"
+        android:background="@color/color5"
         android:lineSpacingExtra="4sp"
-        android:padding="@dimen/dimen_8dp"
         android:text="@string/blog_title"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textIsSelectable="true"
-        android:textStyle="bold"
         android:textSize="@dimen/dimen_32sp"
+        android:textStyle="bold"
         android:typeface="serif"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/blog_author_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailed_blog_title">
+
+        <TextView
+            android:id="@+id/detailed_blog_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:lineSpacingExtra="4sp"
+            android:padding="@dimen/dimen_8dp"
+            android:text="@string/blog_author"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_16sp"
+            android:typeface="sans" />
+
+        <TextView
+            android:id="@+id/detailed_blog_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:lineSpacingExtra="4sp"
+            android:padding="@dimen/dimen_8dp"
+            android:text="@string/blog_date"
+            android:textAlignment="textEnd"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_16sp"
+            android:typeface="sans" />
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/detailed_blog_detail"
+        android:id="@+id/detailed_blog_para1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_8dp"
@@ -36,10 +71,41 @@
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textIsSelectable="true"
-        android:textSize="@dimen/dimen_24sp"
+        android:textSize="@dimen/dimen_18sp"
         android:typeface="serif"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detailed_blog_title" />
+        app:layout_constraintTop_toBottomOf="@id/blog_author_date" />
 
+    <TextView
+        android:id="@+id/detailed_blog_para2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_8dp"
+        android:lineSpacingExtra="4sp"
+        android:padding="@dimen/dimen_8dp"
+        android:text="@string/blog_detail"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/dimen_18sp"
+        android:typeface="serif"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailed_blog_para1" />
+
+    <TextView
+        android:id="@+id/detailed_blog_para3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_8dp"
+        android:lineSpacingExtra="4sp"
+        android:padding="@dimen/dimen_8dp"
+        android:text="@string/blog_detail"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/dimen_18sp"
+        android:typeface="serif"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailed_blog_para2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

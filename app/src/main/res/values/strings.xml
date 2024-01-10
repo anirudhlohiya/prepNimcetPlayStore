@@ -43,6 +43,7 @@
     <string name="blog_detail">Blog Detail</string>
     <string name="app_logo">App Logo</string>
     <string name="blog">Blog</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="blog_author">Blog Author</string>
+    <string name="blog_date">Blog Date</string>
 </resources>

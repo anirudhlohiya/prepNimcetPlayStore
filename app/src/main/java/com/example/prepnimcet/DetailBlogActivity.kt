@@ -16,7 +16,7 @@ class DetailBlogActivity : AppCompatActivity() {
         val blog=intent.getParcelableExtra<BlogData>("blog")
         if (blog!=null){
             binding.detailedBlogTitle.text=blog.title
-            binding.detailedBlogDetail.text=blog.detail
+            binding.detailedBlogPara1.text=blog.detail
         }
     }
 }
