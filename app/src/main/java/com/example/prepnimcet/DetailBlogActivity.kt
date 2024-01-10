@@ -13,10 +13,15 @@ class DetailBlogActivity : AppCompatActivity() {
         binding=ActivityDetailBlogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val blog=intent.getParcelableExtra<BlogData>("blog")
-        if (blog!=null){
-            binding.detailedBlogTitle.text=blog.title
-            binding.detailedBlogDetail.text=blog.detail
-        }
+        setValuesOnViews()
+    }
+
+    private fun setValuesOnViews() {
+        binding.detailedBlogTitle.text=intent.getStringExtra("title")
+        binding.detailedBlogAuthor.text=intent.getStringExtra("author")
+        binding.detailedBlogDate.text=intent.getStringExtra("date")
+        binding.detailedBlogPara1.text=intent.getStringExtra("para1")
+        binding.detailedBlogPara2.text=intent.getStringExtra("para2")
+        binding.detailedBlogPara3.text=intent.getStringExtra("para3")
     }
 }
