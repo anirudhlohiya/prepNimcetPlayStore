@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
                                 blogList.add(dc.document.toObject(BlogData::class.java))
                             }
                         }
-//                        blogAdapter.notifyDataSetChanged()
+                        blogAdapter.notifyDataSetChanged()
                         binding?.recyclerview?.clearFocus()
                     }
 
