@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PrepNimcet"
+        android:theme="@style/Base.Theme.PrepNimcet"
         tools:targetApi="31">
         <activity
             android:name=".activity_password_reset"
@@ -30,9 +30,6 @@
             android:name=".activity_login"
             android:exported="false" />
         <activity
-            android:name=".DetailBlogActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity_welcome"
             android:exported="true">
             <intent-filter>
@@ -44,6 +41,15 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".DetailBlogActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.PrepNimcet">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,7 +1,9 @@
 package com.example.prepnimcet
 
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.example.prepnimcet.databinding.ActivityDetailBlogBinding
 
 class DetailBlogActivity : AppCompatActivity() {
@@ -13,6 +15,7 @@ class DetailBlogActivity : AppCompatActivity() {
         binding=ActivityDetailBlogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.color6)))
         setValuesOnViews()
     }
 

@@ -8,5 +8,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.PrepNimcet" parent="Base.Theme.PrepNimcet" />
+    <style name="Theme.PrepNimcet" parent="Theme.AppCompat.Light.DarkActionBar" >
+        <item name="colorPrimary">@color/color5</item>
+        <item name="colorPrimaryVariant">@color/color5</item>
+        <item name="android:statusBarColor">@color/action_bar</item>
+    </style>
 </resources>
