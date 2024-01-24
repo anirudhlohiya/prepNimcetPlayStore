@@ -1,0 +1,62 @@
+<!-- about_dialog.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/about_app"
+        android:textSize="@dimen/dimen_32sp"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/about_icon"
+        app:drawableTint="@color/color6" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/message1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_description_para1"
+                android:textSize="@dimen/dimen_16sp" />
+
+            <TextView
+                android:id="@+id/message2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_description_para2"
+                android:textSize="@dimen/dimen_16sp" />
+
+            <TextView
+                android:id="@+id/message3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_description_para3"
+                android:textSize="@dimen/dimen_16sp" />
+
+            <Button
+                android:id="@+id/aboutDialogCloseBtn"
+                android:layout_width="wrap_content"
+                android:backgroundTint="@color/color6"
+                android:layout_height="wrap_content"
+                android:text="@string/close" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

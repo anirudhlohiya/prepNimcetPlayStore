@@ -7,7 +7,7 @@
     <string name="msg_confirm_passwor">Confirm password</string>
     <string name="msg_verification">Verification Link Send!</string>
     <string name="lbl_back_to_login">Back to Login</string>
-    <string name="msg_don_t_worry_it">"Don't worry! It occurs. Please enter the email address linked with your account."</string>
+    <string name="msg_don_t_worry_it">"Don/'t worry! It occurs. Please enter the email address linked with your account."</string>
     <string name="msg_agree_and_regis">Agree and Register</string>
     <string name="lbl_or_login_with">Or Login with</string>
     <string name="lbl_login">Login</string>
@@ -20,7 +20,7 @@
     <string name="msg_forgot_password">Forgot Password?</string>
     <string name="lbl_send_code">Send Link</string>
     <string name="msg_welcome_back_g">Welcome back! Glad to see you, Again!</string>
-    <string name="msg_create_account_g">Welcome! Ready to begin your journey with us...</string>
+    <string name="msg_create_account_g">Welcome! Ready to begin your journey with us…</string>
     <string name="lbl_register">Register</string>
     <string name="lbl_username">Name</string>
     <string name="default_web_client_id">370632523024-253cb06vpd6epausbj12g9h7brj4nb5v.apps.googleusercontent.com</string>
@@ -46,4 +46,28 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="blog_author">Blog Author</string>
     <string name="blog_date">Blog Date</string>
+    <string name="about_app">About App</string>
+    <string name="app_description_para1">App Name: prepNimcet
+
+Description:
+Prepare for the NIT MCA Common Entrance Test (NIMCET) with the ultimate exam companion - NIMCET Prep Master! Our app is designed to help you ace the entrance exam with a comprehensive set of features tailored to your success.</string>
+    <string name="app_description_para2">📘 Latest Blogs on NIMCET:
+Stay updated with the latest news, tips, and insights about NIMCET through our regularly updated blog section. Get expert advice, exam pattern analysis, and success stories from past toppers.
+
+📝 Mock Tests &amp; Quizzes:
+Practice makes perfect! Access a vast library of mock tests and quizzes covering all subjects and topics in the NIMCET syllabus. Simulate the exam environment and track your progress to identify areas for improvement.</string>
+    <string name="app_description_para3">🏆 Achievement Badges:
+Stay motivated and track your progress with achievement badges. Celebrate your milestones, such as completing a certain number of quizzes, achieving high scores, or consistently improving in specific subjects.
+
+Start your journey towards NIMCET success with NIMCET Prep Master. Download the app now and embark on the path to securing your seat in one of India premier MCA programs!
+
+Feel free to customize the content based on the specific features and goals of your app.
+
+
+
+
+
+
+</string>
+    <string name="close">Close</string>
 </resources>

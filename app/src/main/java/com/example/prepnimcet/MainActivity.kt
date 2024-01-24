@@ -3,8 +3,10 @@ package com.example.prepnimcet
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -21,12 +23,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.open_nav, R.string.close_nav)
+        toggle =
+            ActionBarDrawerToggle(this, binding.drawerLayout, R.string.open_nav, R.string.close_nav)
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.color6)))
+        supportActionBar?.setBackgroundDrawable(
+            ColorDrawable(
+                ContextCompat.getColor(
+                    this,
+                    R.color.color6
+                )
+            )
+        )
         //Code for Navigation Drawer
         binding.navigationDrawer.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -45,8 +55,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                R.id.above_icon -> Toast.makeText(applicationContext, "Above", Toast.LENGTH_SHORT)
-                    .show()
+                R.id.above_icon -> aboutDialog()
 
                 R.id.logout_icon -> Toast.makeText(
                     applicationContext,
@@ -85,6 +94,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun aboutDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogView = layoutInflater.inflate(R.layout.about_dialog_box, null)
+        dialogBuilder.setView(dialogView)
+//            .setTitle("About")
+        val aboutDialog: AlertDialog = dialogBuilder.create()
+        aboutDialog.show()
+        val closeButton = dialogView.findViewById<Button>(R.id.aboutDialogCloseBtn)
+        closeButton.setOnClickListener {
+            aboutDialog.dismiss()
+        }
+    }
+
     private fun showExitConfirmationDialog() {
         val exitDialog = ExitConfirmationDialogFragment()
         exitDialog.show(supportFragmentManager, "exit_dialog")
@@ -104,6 +126,7 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     //Code for Back Pressed Button Action
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
