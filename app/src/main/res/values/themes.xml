@@ -8,9 +8,14 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.PrepNimcet" parent="Theme.AppCompat.Light.DarkActionBar" >
+    <style name="Theme.PrepNimcet" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/color5</item>
         <item name="colorPrimaryVariant">@color/color5</item>
         <item name="android:statusBarColor">@color/action_bar</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.Base.Theme.PrepNimcet" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 </resources>

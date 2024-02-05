@@ -21,4 +21,12 @@
     <color name="color6">#395886</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="underline">#BDB8B8</color>
+
+    <!--Mock Test Color-->
+    <color name="mock_test_item">#fff</color>
+    <color name="mock_test_background">#d5deef</color>
+    <color name="mock_test_question_background">#d5deef</color>
+    <color name="detail_mock_test_background">#fff</color>
+    <color name="optionButton">#fff</color>
+
 </resources>
