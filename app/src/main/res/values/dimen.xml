@@ -50,18 +50,26 @@
     <dimen name="_320pxv">320.0dp</dimen>
     <dimen name="_498pxv">498.0dp</dimen>
 
-    <dimen name="dimen_180dp">180dp</dimen>
-    <dimen name="dimen_184dp">184dp</dimen>
-    <dimen name="dimen_48sp">48sp</dimen>
-    <dimen name="dimen_32sp">32sp</dimen>
-    <dimen name="dimen_40sp">40sp</dimen>
-    <dimen name="dimen_24sp">24sp</dimen>
-    <dimen name="dimen_20sp">20sp</dimen>
-    <dimen name="dimen_16sp">16sp</dimen>
+    <!--    Dimension for dp-->
+    <dimen name="dimen_4dp">4dp</dimen>
     <dimen name="dimen_8dp">8dp</dimen>
     <dimen name="dimen_16dp">16dp</dimen>
-    <dimen name="dimen_18sp">18sp</dimen>
-    <dimen name="dimen_4dp">4dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_24dp">24dp</dimen>
     <dimen name="dimen_32dp">32dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
+    <dimen name="dimen_72dp">72dp</dimen>
+    <dimen name="dimen_180dp">180dp</dimen>
+    <dimen name="dimen_184dp">184dp</dimen>
+
+    <!--    Dimension for sp-->
+    <dimen name="dimen_16sp">16sp</dimen>
+    <dimen name="dimen_18sp">18sp</dimen>
+    <dimen name="dimen_20sp">20sp</dimen>
+    <dimen name="dimen_24sp">24sp</dimen>
+    <dimen name="dimen_28sp">28sp</dimen>
+    <dimen name="dimen_32sp">32sp</dimen>
+    <dimen name="dimen_40sp">40sp</dimen>
+    <dimen name="dimen_48sp">48sp</dimen>
 
 </resources>

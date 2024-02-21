@@ -85,5 +85,19 @@
     <string name="previous">Previous</string>
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
+    <string name="questionCounter">1 / 120</string>
+    <string name="question_counter">%1$d / %2$d</string>
+    <string name="countdown_timer_default">"00:00:00"</string>
+    <string name="score">Score</string>
+    <string name="_0000">0000</string>
+    <string name="out_of_1000">OUT OF 1000</string>
+    <string name="_2_hours_00_minutes_00_seconds">2 Hours : 00 Min : 00 Sec</string>
+    <string name="date_yyyy_mm_dd">Date : YYYY/MM/DD</string>
+    <string name="total_questions">Total Questions</string>
+    <string name="_120">120</string>
+    <string name="_000">000</string>
+    <string name="correct_answer">Correct Answer</string>
+    <string name="incorrect_answer">Incorrect Answer</string>
+    <string name="unattempted_questions">Unattempted Questions</string>
 
 </resources>

@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.recyclerview?.layoutManager =LinearLayoutManager(context)
-        binding?.recyclerview?.setHasFixedSize(true)
+        binding?.recyclerview?.setHasFixedSize(false)
 
         blogList= ArrayList()
         blogAdapter= BlogAdapter(blogList)

@@ -23,11 +23,7 @@ class MockTestFragment : Fragment() {
 //        super.onCreate(savedInstanceState)
 //    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentMockTestBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -36,7 +32,7 @@ class MockTestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.mockTestRecyclerview?.layoutManager = LinearLayoutManager(context)
-        binding?.mockTestRecyclerview?.setHasFixedSize(true)
+        binding?.mockTestRecyclerview?.setHasFixedSize(false)
         //Mock Test Adapter
         mocktestList = ArrayList()
         mocktestAdapter = MockTestAdapter(mocktestList)
@@ -61,9 +57,9 @@ class MockTestFragment : Fragment() {
             .addOnSuccessListener { result ->
                 for (document in result) {
 
-                    var mockTestId = document.toObject(MockTestData::class.java)
+                    val mockTestId = document.toObject(MockTestData::class.java)
                     mockTestId.id = document.id
-                    var mockTestData = document.toObject(MockTestData::class.java)
+                    val mockTestData = document.toObject(MockTestData::class.java)
                     mockTestData.title = document.data.toString()
 
                     mocktestList.add(mockTestId)

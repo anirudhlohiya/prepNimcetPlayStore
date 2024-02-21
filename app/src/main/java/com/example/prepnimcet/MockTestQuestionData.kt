@@ -6,7 +6,6 @@ data class MockTestQuestionData(
     var optionB: String? = null,
     var optionC: String ? = null,
     var optionD: String ? = null,
-    var answer: String ? = null
-//    ,
-//    var userAnswer: String = ""
+    var answer: String ? = null,
+    var userAnswer: String? = null
 )

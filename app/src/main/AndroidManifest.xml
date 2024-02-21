@@ -14,38 +14,37 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.PrepNimcet"
         tools:targetApi="31">
-
+        <activity
+            android:name=".MockTestResultActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PrepNimcet">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".DetailMockTestActivity"
             android:exported="false"
             android:theme="@style/Theme.PrepNimcet">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-
         </activity>
-
         <activity
             android:name=".activity_password_reset"
             android:exported="false" />
-
         <activity
             android:name=".activity_forget_password"
             android:exported="false" />
-
         <activity
             android:name=".activity_verification"
             android:exported="false" />
-
         <activity
             android:name=".activity_register"
             android:exported="false" />
-
         <activity
             android:name=".activity_login"
             android:exported="false" />
-
         <activity
             android:name=".activity_welcome"
             android:exported="true">
@@ -55,11 +54,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".DetailBlogActivity"
             android:exported="false"
@@ -69,7 +66,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
     </application>
 
 </manifest>

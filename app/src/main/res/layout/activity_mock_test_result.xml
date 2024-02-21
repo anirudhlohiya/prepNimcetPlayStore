@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MockTestResultActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dimen_8dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:padding="@dimen/dimen_4dp"
+            android:text="@string/score"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_24sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/total_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dimen_4dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:padding="@dimen/dimen_4dp"
+            android:text="@string/_0000"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dimen_4dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:padding="@dimen/dimen_4dp"
+            android:text="@string/out_of_1000"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_16sp" />
+
+        <TextView
+            android:id="@+id/total_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dimen_8dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:padding="@dimen/dimen_8dp"
+            android:text="@string/_2_hours_00_minutes_00_seconds"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_20sp"
+            app:drawableStartCompat="@drawable/timer" />
+
+        <TextView
+            android:id="@+id/mock_test_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/dimen_8dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:padding="@dimen/dimen_8dp"
+            android:text="@string/date_yyyy_mm_dd"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_8dp"
+                android:fontFamily="serif"
+                android:gravity="start"
+                android:padding="@dimen/dimen_8dp"
+                android:text="@string/total_questions"
+                android:drawablePadding="@dimen/dimen_8dp"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_16sp"
+                app:drawableStartCompat="@drawable/question" />
+
+            <TextView
+                android:id="@+id/total_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_8dp"
+                android:fontFamily="serif"
+                android:gravity="end"
+                android:padding="@dimen/dimen_8dp"
+                android:text="@string/_120"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_8dp"
+                android:fontFamily="serif"
+                android:gravity="start"
+                android:padding="@dimen/dimen_8dp"
+                android:text="@string/correct_answer"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_16sp"
+                android:drawablePadding="@dimen/dimen_8dp"
+                app:drawableStartCompat="@drawable/correct_answer_icon" />
+
+            <TextView
+                android:id="@+id/total_correct_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_8dp"
+                android:fontFamily="serif"
+                android:gravity="end"
+                android:padding="@dimen/dimen_8dp"
+                android:text="@string/_000"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_8dp"
+                android:fontFamily="serif"
+                android:gravity="start"
+                android:padding="@dimen/dimen_8dp"
+                android:text="@string/incorrect_answer"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_16sp"
+                android:drawablePadding="@dimen/dimen_8dp"
+                app:drawableStartCompat="@drawable/incorrect_answer_icon" />
+
+            <TextView
+                android:id="@+id/total_incorrect_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_8dp"
+                android:fontFamily="serif"
+                android:gravity="end"
+                android:padding="@dimen/dimen_8dp"
+                android:text="@string/_000"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_8dp"
+                android:drawablePadding="@dimen/dimen_8dp"
+                android:fontFamily="serif"
+                android:gravity="start"
+                android:padding="@dimen/dimen_8dp"
+                android:text="@string/unattempted_questions"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_16sp"
+                app:drawableStartCompat="@drawable/about_icon" />
+
+            <TextView
+                android:id="@+id/total_unattempted_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/dimen_4dp"
+                android:fontFamily="serif"
+                android:gravity="end"
+                android:padding="@dimen/dimen_8dp"
+                android:text="@string/_000"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_20sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen_8dp"
+            android:backgroundTint="@color/color3"
+            android:fontFamily="sans-serif-black"
+            android:padding="@dimen/dimen_8dp"
+            android:text="@string/close"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_16sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
