@@ -14,6 +14,7 @@ class MockTestResultActivity : AppCompatActivity() {
     private var correctAnswer = 0
     private var incorrectAnswer = 0
     private var unAttemptAnswer = 0
+    private var marks = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMockTestResultBinding.inflate(layoutInflater)
@@ -50,6 +51,7 @@ class MockTestResultActivity : AppCompatActivity() {
                 answer -> {
                     // If they match, increment the correct count
                     correctAnswer++
+                    marks += 8
                 }
 
                 null -> {
@@ -66,6 +68,7 @@ class MockTestResultActivity : AppCompatActivity() {
         binding.totalCorrectAnswer?.text = "$correctAnswer"
         binding.totalIncorrectAnswer?.text = "$incorrectAnswer"
         binding.totalUnattemptedQuestion?.text = "$unAttemptAnswer"
+        binding.totalScore?.text = "$marks"
     }
 
 
@@ -76,11 +79,20 @@ class MockTestResultActivity : AppCompatActivity() {
         // Convert milliseconds to hours, minutes, and seconds
         val hours = TimeUnit.MILLISECONDS.toHours(elapsedTimeMillis)
         val minutes = TimeUnit.MILLISECONDS.toMinutes(elapsedTimeMillis) % 60
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(elapsedTimeMillis) % 60
 
         // Format the elapsed time as "hours:minutes:seconds"
-        val formattedTime = String.format("%02d hours %02d minutes ", hours, minutes)
+        val formattedTime = String.format("%02d hours %02d min %02d sec", hours, minutes, seconds)
 
         // Display the countdown time on the screen
         binding.totalTime?.text = formattedTime
     }
+
+    override fun onBackPressed() {
+        val backIntent = Intent(this, MainActivity::class.java)
+        startActivity(backIntent)
+        finish() // Call finish to close the current activity
+        super.onBackPressed()
+    }
+
 }
