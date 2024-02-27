@@ -28,5 +28,14 @@
     <color name="mock_test_question_background">#d5deef</color>
     <color name="detail_mock_test_background">#fff</color>
     <color name="optionButton">#fff</color>
+    <color name="gray">#808080</color>
+    <color name="orange">#FFA500</color>
+    <color name="blue">#0000ff</color>
+    <color name="light_blue_card_color">#Add8e6</color>
+    <color name="quiz_next_button_color">#3AC0EC</color>
+    <color name="blue2">#0000FF</color>
+    <color name="light_blue2">#ADD8E6</color>
+    <color name="red">#FF0000</color>
+    <color name="light_red">#FF7F7F</color>
 
 </resources>

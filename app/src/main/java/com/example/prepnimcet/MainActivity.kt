@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.quiz_bar_icon -> {
-                    loadFragment(QuizFragment.newInstance())
+                    loadFragment(QuizFragment())
                 }
 
                 R.id.mock_test_bar_icon -> {
