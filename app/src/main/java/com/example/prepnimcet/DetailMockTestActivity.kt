@@ -215,6 +215,7 @@ class DetailMockTestActivity : AppCompatActivity() {
         builder.setNeutralButton("Submit") { dialog, which ->
             val elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis
             submitMockTest(elapsedTimeMillis)
+            finish()
         }
 
         val dialog = builder.create()
