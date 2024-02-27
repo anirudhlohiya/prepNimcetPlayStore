@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="app_name">prepNimcet</string>
+    <string name="app_name">prepNIMCET</string>
     <string name="lbl_email">Email</string>
     <string name="msg_don_t_have_an_a">Don\u2019t have an account? Register Now</string>
     <string name="msg_alr_d_have_an_a">Already have an account? Login Now</string>

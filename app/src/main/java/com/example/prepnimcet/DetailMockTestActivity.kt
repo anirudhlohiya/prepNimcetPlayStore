@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prepnimcet.databinding.ActivityDetailMockTestBinding
@@ -152,7 +154,6 @@ class DetailMockTestActivity : AppCompatActivity() {
     }
 
     private fun submitMockTest(elapsedTimeMillis: Long) {
-//        Log.d("Mock Test", mocktestQuestionList.toString())
         val intent = Intent(this, MockTestResultActivity::class.java)
         val json: String = Gson().toJson(mocktestQuestionList)
         intent.putExtra("MockTestData", json)
@@ -163,4 +164,62 @@ class DetailMockTestActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                showExitDialog()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onBackPressed() {
+        // Build the alert dialog
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Exit Mock Test")
+        builder.setMessage("Are you sure you want to exit the mock test?")
+
+        // Set up the buttons
+        builder.setPositiveButton("Exit") { dialog, which ->
+            super.onBackPressed() // Exit the activity
+        }
+        builder.setNegativeButton("Cancel") { dialog, which ->
+            // Dismiss the dialog
+            dialog.dismiss()
+        }
+        builder.setNeutralButton("Submit") { dialog, which ->
+            // Calculate the elapsed time and submit the mock test
+            val elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis
+            submitMockTest(elapsedTimeMillis)
+        }
+
+        // Create and show the dialog
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun showExitDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Exit Mock Test")
+        builder.setMessage("Are you sure you want to exit the mock test?")
+
+        builder.setPositiveButton("Exit") { dialog, which ->
+            finish() // Exit the activity
+        }
+        builder.setNegativeButton("Cancel") { dialog, which ->
+            dialog.dismiss()
+        }
+        builder.setNeutralButton("Submit") { dialog, which ->
+            val elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis
+            submitMockTest(elapsedTimeMillis)
+            finish()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
 }
