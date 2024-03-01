@@ -4,33 +4,8 @@ class Questions (
     var optionD: String = "", var optionC: String = "", var optionB: String = "",
     var question: String = "", var optionA: String = "", var answer: String = ""
 ) {
+    override fun toString(): String {
+        return "Questions(optionD='$optionD', optionC='$optionC', optionB='$optionB', question='$question', optionA='$optionA', answer='$answer')"
+    }
 
 }
-
-
-//class Questions {
-//    var question: String? = null
-//    var optionA: String? = null
-//    var optionB: String? = null
-//    var optionC: String? = null
-//    var optionD: String? = null
-//    var answer: String? = null
-//
-//    constructor()
-//    constructor(
-//        question: String?,
-//        option1: String?,
-//        option2: String?,
-//        option3: String?,
-//        option4: String?,
-//        answer: String?
-//    ) {
-//        this.question = question
-//        this.optionA = optionA
-//        this.optionB = optionB
-//        this.optionC = optionC
-//        this.optionD = optionD
-//        this.answer = answer
-//    }
-//}
-

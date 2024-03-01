@@ -1,7 +1,9 @@
 package com.example.prepnimcet
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var currentQuestionIndex = 0
     private var timer: CountDownTimer? = null
     private var answerSelected = false
+    private var score = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +48,12 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                             .document(catId)
                             .collection(quizTitle)
                             .document("questions")
-                        for (i in 1..15) {
+
+                        // Generate a list of 5 random numbers between 1 and 15
+                        val randomNumbers = (1..15).shuffled().take(5)
+
+                        var fetchCounter = 0
+                        for (i in randomNumbers) {
                             val questionRef = questionsRef.collection("q$i")
                             questionRef.get().addOnSuccessListener { questionSnapshot ->
                                 for (doc in questionSnapshot.documents) {
@@ -54,7 +62,9 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                         questionList.add(questionData)
                                     }
                                 }
-                                if (questionList.size >= 5) {
+                                fetchCounter++
+                                if (fetchCounter == 5) {
+                                    // Shuffle the questionList and start the quiz after all questions have been fetched
                                     questionList.shuffle()
                                     startQuiz()
                                     startTimer()
@@ -76,7 +86,6 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     ).show()
                 }
             }
-
         binding.btnNext.setOnClickListener {
             setNextQuestion()
         }
@@ -103,8 +112,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun showCorrectAnswer() {
         val question = questionList[index - 1] // Get the current question
-        val correctAnswer = question.answer
-        when (correctAnswer) {
+        when (question.answer) {
             "A" -> binding.option1.background =
                 ContextCompat.getDrawable(this, R.drawable.blue_button_bg)
 
@@ -120,10 +128,14 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun checkAnswer(selectedOption: String) {
-        if (!answerSelected) {
+        Log.d("QuestionsActivity", "checkAnswer called with selectedOption: $selectedOption")
+        if (!answerSelected && currentQuestionIndex < questionList.size) {
             val question = questionList[currentQuestionIndex] // Get the current question
+            Log.d("QuestionsActivity", "Current question: $question")
             if (question.answer == selectedOption) {
                 // User selected the correct answer
+                Log.d("QuestionsActivity", "User selected the correct answer")
+                score++
                 when (selectedOption) {
                     "A" -> binding.option1.background =
                         ContextCompat.getDrawable(this, R.drawable.blue_button_bg)
@@ -138,6 +150,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         ContextCompat.getDrawable(this, R.drawable.blue_button_bg)
                 }
             } else {
+                Log.d("QuestionsActivity", "User selected the wrong answer")
                 // User selected the wrong answer
                 when (selectedOption) {
                     "A" -> binding.option1.background =
@@ -152,16 +165,22 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     "D" -> binding.option4.background =
                         ContextCompat.getDrawable(this, R.drawable.red_button_bg)
                 }
+                // Show the correct answer in blue
+                showCorrectAnswer()
             }
-            answerSelected = true // Set answerSelected to true after processing the answer
-        } else {
+            // Set answerSelected to true after processing the answer
+            answerSelected = true
+            // Increment currentQuestionIndex after a question has been answered
+            currentQuestionIndex++
+        } else if (currentQuestionIndex < questionList.size) {
             // User has already selected an answer
+            Log.d("QuestionsActivity", "User has already selected an answer")
             Toast.makeText(this, "You have already selected an answer", Toast.LENGTH_SHORT).show()
         }
     }
 
-
     private fun startQuiz() {
+        Log.d("QuestionsActivity", "startQuiz called")
         setNextQuestion()
     }
 
@@ -179,16 +198,25 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 binding.pbProgress.progress = ((index + 1) * 20)
                 btnNext.text = if (index == questionList.size - 1) "Submit" else "Next"
             }
-            index++
-            currentQuestionIndex++
             resetOptionBackgrounds()
-            startTimer()
-            answerSelected = false // Reset answerSelected for the new question
+            if (index < questionList.size) {
+                answerSelected = false // Reset answerSelected for the new question
+            }
+            index++
+            if (index < questionList.size) {
+                startTimer()
+            }
         } else {
-            // Handle quiz completion
-            Toast.makeText(this, "Quiz Completed", Toast.LENGTH_SHORT).show()
+            // send the user to the result activity with the score
+            val intent = Intent(this, QuizResult::class.java)
+            intent.putExtra("score", score)
+            startActivity(intent)
+            finish()
+            // Reset answerSelected when the quiz is completed
+            answerSelected = false
         }
     }
+
 
     private fun resetOptionBackgrounds() {
         binding.option1.background = ContextCompat.getDrawable(this, R.drawable.gray_button_bg)
@@ -204,6 +232,7 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+        Log.d("QuestionsActivity", "onClick called with view ID: ${v?.id}")
         when (v?.id) {
             R.id.option1 -> {
                 checkAnswer("A")
@@ -219,6 +248,10 @@ class QuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.option4 -> {
                 checkAnswer("D")
+            }
+
+            else -> {
+                Log.d("QuestionsActivity", "onClick: Invalid view ID")
             }
         }
     }

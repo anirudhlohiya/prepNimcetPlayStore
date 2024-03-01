@@ -1,9 +1,12 @@
 package com.example.prepnimcet
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -12,6 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.prepnimcet.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,11 +48,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.share_icon -> Toast.makeText(applicationContext, "Share", Toast.LENGTH_SHORT)
                     .show()
 
-                R.id.feedback_icon -> Toast.makeText(
-                    applicationContext,
-                    "FeedBack",
-                    Toast.LENGTH_SHORT
-                ).show()
+                R.id.feedback_icon -> feedbackDialog()
 
                 R.id.rate_us_icon -> Toast.makeText(
                     applicationContext,
@@ -57,11 +58,13 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.above_icon -> aboutDialog()
 
-                R.id.logout_icon -> Toast.makeText(
-                    applicationContext,
-                    "Logout Icon",
-                    Toast.LENGTH_SHORT
-                ).show()
+                R.id.logout_icon -> {
+                    // logout the current user and send him to welcome activity
+                    FirebaseAuth.getInstance().signOut()
+                    val intent = Intent(this, activity_welcome::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
             //Code for Close Navigation Drawer after one item is click
             binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -92,6 +95,81 @@ class MainActivity : AppCompatActivity() {
         //Default Bottom bar option will be select by this
         binding.bottomNavigationBar.selectedItemId = R.id.home_bar_icon
 
+    }
+
+    @SuppressLint("MissingInflatedId")
+    private fun feedbackDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_feedback, null)
+        dialogBuilder.setView(dialogView)
+
+        val nameField = dialogView.findViewById<EditText>(R.id.feedback_name)
+        val emailField = dialogView.findViewById<EditText>(R.id.feedback_email)
+        val messageField = dialogView.findViewById<EditText>(R.id.feedback_message)
+        val submitButton = dialogView.findViewById<Button>(R.id.feedback_submit)
+
+        val feedbackDialog: AlertDialog = dialogBuilder.create()
+        feedbackDialog.show()
+
+        val firestore = FirebaseFirestore.getInstance()
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+
+        val userRef = firestore.collection("users").document(userId.toString())
+
+        userRef.get().addOnSuccessListener { document ->
+            val name = document.getString("name")
+            val email = document.getString("email")
+
+            nameField.setText(name)
+            emailField.setText(email)
+
+            nameField.isEnabled = false
+            emailField.isEnabled = false
+        }
+
+        submitButton.setOnClickListener {
+            val name = nameField.text.toString()
+            val email = emailField.text.toString()
+            val message = messageField.text.toString()
+
+            if (message.isNotEmpty()) {
+                userRef.get().addOnSuccessListener { document ->
+                    val feedbackCount = document.data?.filterKeys { it.startsWith("feedback") }?.size ?: 0
+                    val newFeedbackField = "feedback${feedbackCount + 1}"
+
+                    val feedbackData = mapOf(
+                        "name" to name,
+                        "email" to email,
+                        newFeedbackField to message,
+                        "uid" to userId
+                    )
+
+                    val userFeedbackData = mapOf(
+                        newFeedbackField to message
+                    )
+
+                    val feedbackRef = firestore.collection("feedback").document(userId.toString())
+
+                    userRef.update(userFeedbackData).addOnSuccessListener {
+                        feedbackRef.update(feedbackData).addOnSuccessListener {
+                            Toast.makeText(this, "Your feedback has been successfully submitted", Toast.LENGTH_SHORT).show()
+                            feedbackDialog.dismiss()
+                        }.addOnFailureListener { e ->
+                            feedbackRef.set(feedbackData).addOnSuccessListener {
+                                Toast.makeText(this, "Your feedback has been successfully submitted", Toast.LENGTH_SHORT).show()
+                                feedbackDialog.dismiss()
+                            }.addOnFailureListener { e2 ->
+                                Toast.makeText(this, "Error: ${e2.message}", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }.addOnFailureListener { e ->
+                        Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Feedback message is required", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun aboutDialog() {
