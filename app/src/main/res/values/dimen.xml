@@ -53,14 +53,18 @@
     <!--    Dimension for dp-->
     <dimen name="dimen_4dp">4dp</dimen>
     <dimen name="dimen_8dp">8dp</dimen>
+    <dimen name="dimen_12dp">12dp</dimen>
     <dimen name="dimen_16dp">16dp</dimen>
     <dimen name="dimen_20dp">20dp</dimen>
     <dimen name="dimen_24dp">24dp</dimen>
     <dimen name="dimen_32dp">32dp</dimen>
     <dimen name="dimen_40dp">40dp</dimen>
     <dimen name="dimen_72dp">72dp</dimen>
+    <dimen name="dimen_164dp">164dp</dimen>
+    <dimen name="dimen_172dp">172dp</dimen>
     <dimen name="dimen_180dp">180dp</dimen>
     <dimen name="dimen_184dp">184dp</dimen>
+    <dimen name="dimen_200dp">200dp</dimen>
 
     <!--    Dimension for sp-->
     <dimen name="dimen_16sp">16sp</dimen>

@@ -98,11 +98,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dimen_8dp"
+                android:drawablePadding="@dimen/dimen_8dp"
                 android:fontFamily="serif"
                 android:gravity="start"
                 android:padding="@dimen/dimen_8dp"
                 android:text="@string/total_questions"
-                android:drawablePadding="@dimen/dimen_8dp"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dimen_16sp"
@@ -133,6 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dimen_8dp"
+                android:drawablePadding="@dimen/dimen_8dp"
                 android:fontFamily="serif"
                 android:gravity="start"
                 android:padding="@dimen/dimen_8dp"
@@ -140,7 +141,6 @@
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dimen_16sp"
-                android:drawablePadding="@dimen/dimen_8dp"
                 app:drawableStartCompat="@drawable/correct_answer_icon" />
 
             <TextView
@@ -168,6 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dimen_8dp"
+                android:drawablePadding="@dimen/dimen_8dp"
                 android:fontFamily="serif"
                 android:gravity="start"
                 android:padding="@dimen/dimen_8dp"
@@ -175,7 +176,6 @@
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dimen_16sp"
-                android:drawablePadding="@dimen/dimen_8dp"
                 app:drawableStartCompat="@drawable/incorrect_answer_icon" />
 
             <TextView
@@ -228,18 +228,22 @@
                 android:textSize="@dimen/dimen_20sp" />
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/close"
-            android:layout_width="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="@dimen/dimen_164dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/dimen_8dp"
-            android:backgroundTint="@color/color3"
-            android:fontFamily="sans-serif-black"
-            android:padding="@dimen/dimen_8dp"
+            android:background="@color/Indigo"
             android:text="@string/close"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dimen_16sp" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_16sp"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/dimen_8dp"
+            app:rippleColor="@color/white"
+            app:strokeColor="@color/black"
+            app:strokeWidth="@dimen/dimen_8dp" />
 
     </LinearLayout>
 

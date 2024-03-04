@@ -39,7 +39,7 @@
         android:layout_marginBottom="@dimen/dimen_8dp"
         android:text="@string/user_email"
         android:textColor="@color/black"
-        android:textSize="@dimen/dimen_16sp"
+        android:textSize="@dimen/dimen_20sp"
         android:typeface="serif" />
 
     <View

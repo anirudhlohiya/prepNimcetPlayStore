@@ -14,67 +14,96 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.PrepNimcet"
         tools:targetApi="31">
+
         <activity
             android:name=".QuizResult"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".QuestionsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MockTestResultActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.PrepNimcet">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
         <activity
             android:name=".DetailMockTestActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.PrepNimcet">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
         <activity
             android:name=".activity_password_reset"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity_forget_password"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity_verification"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity_register"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity_login"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity_welcome"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".DetailBlogActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.PrepNimcet">
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+
         </activity>
+
     </application>
 
 </manifest>

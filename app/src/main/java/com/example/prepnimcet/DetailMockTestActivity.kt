@@ -2,8 +2,11 @@ package com.example.prepnimcet
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Base64
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -72,10 +75,24 @@ class DetailMockTestActivity : AppCompatActivity() {
     }
 
     private fun showQuestion(questionData: MockTestQuestionData) {
-        //Set the question counter on View by TextView
+        //Set the question counter on TextView
         questionCounter()
+
         //Set the question on View by TextView
         binding.mockTestQuestion.text = questionData.question
+
+        val imageString = questionData.imageString
+        if (imageString != null) {
+            // Decode the image string and set it to the ImageView
+            val bitmap = decodeBase64ToBitmap(imageString)
+            binding.mockTestQuestionImage.setImageBitmap(bitmap)
+            // Make the ImageView visible
+            binding.mockTestQuestionImage.visibility = View.VISIBLE
+        } else {
+            // Make the ImageView gone
+            binding.mockTestQuestionImage.visibility = View.GONE
+        }
+
 
         //Set the Options on View by Recycler View
         mocktestOptionAdapter = MocktestOptionAdapter(this, questionData)
@@ -87,20 +104,25 @@ class DetailMockTestActivity : AppCompatActivity() {
         navigationBetweenQuestion()
     }
 
+    private fun decodeBase64ToBitmap(input: String): Bitmap? {
+        val decodedBytes = Base64.decode(input, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+    }
+
     private fun navigationBetweenQuestion() {
         // Show/hide buttons based on the current question index
         if (currentQuestionIndex == 0) {
-            binding.btnNext.visibility = View.VISIBLE
             binding.btnPrevious.visibility = View.INVISIBLE
-            binding.btnSubmit.visibility = View.INVISIBLE
+            binding.btnNext.visibility = View.VISIBLE
+            binding.btnSubmit.visibility = View.GONE
         } else if (currentQuestionIndex == mocktestQuestionList.size - 1) {
             binding.btnPrevious.visibility = View.VISIBLE
-            binding.btnNext.visibility = View.INVISIBLE
+            binding.btnNext.visibility = View.GONE
             binding.btnSubmit.visibility = View.VISIBLE
         } else if (currentQuestionIndex > 0) {
             binding.btnPrevious.visibility = View.VISIBLE
             binding.btnNext.visibility = View.VISIBLE
-            binding.btnSubmit.visibility = View.INVISIBLE
+            binding.btnSubmit.visibility = View.GONE
         }
     }
 

@@ -28,7 +28,7 @@ class activity_forget_password : AppCompatActivity() {
             if (email.isNotEmpty()) {
                 firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        Toast.makeText(this, "Email sent", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Email sent", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, activity_password_reset::class.java)
                         startActivity(intent)
                         finish()
@@ -37,7 +37,7 @@ class activity_forget_password : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Kindly enter the email address", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Kindly enter the email address", Toast.LENGTH_SHORT).show()
             }
         }
     }

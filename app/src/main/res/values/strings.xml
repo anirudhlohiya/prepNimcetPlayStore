@@ -51,21 +51,43 @@
     <string name="about">About</string>
     <string name="about_app">About App</string>
     <string name="app_description_para1">
-        App Name: prepNimcet
+        Application Name: prepNimcet
+        \n
+        \n
         Description:
+        \n
+        \n
         Prepare for the NIT MCA Common Entrance Test (NIMCET) with the ultimate exam companion - NIMCET Prep Master! Our app is designed to help you ace the entrance exam with a comprehensive set of features tailored to your success.
+        \n
+        \n
     </string>
     <string name="app_description_para2">
+        \n
         📘 Latest Blogs on NIMCET:
+        \n
+        \n
         Stay updated with the latest news, tips, and insights about NIMCET through our regularly updated blog section. Get expert advice, exam pattern analysis, and success stories from past toppers.
+        \n
+        \n
         📝 Mock Tests &amp; Quizzes:
         Practice makes perfect! Access a vast library of mock tests and quizzes covering all subjects and topics in the NIMCET syllabus. Simulate the exam environment and track your progress to identify areas for improvement.
+        \n
+        \n
     </string>
     <string name="app_description_para3">
+        \n
         🏆 Achievement Badges:
+        \n
+        \n
         Stay motivated and track your progress with achievement badges. Celebrate your milestones, such as completing a certain number of quizzes, achieving high scores, or consistently improving in specific subjects.
+        \n
+        \n
         Start your journey towards NIMCET success with NIMCET Prep Master. Download the app now and embark on the path to securing your seat in one of India premier MCA programs!
+        \n
+        \n
         Feel free to customize the content based on the specific features and goals of your app.
+        \n
+        \n
     </string>
     <string name="close">Close</string>
 
@@ -99,5 +121,6 @@
     <string name="correct_answer">Correct Answer</string>
     <string name="incorrect_answer">Incorrect Answer</string>
     <string name="unattempted_questions">Unattempted Questions</string>
+    <string name="question_image">Question Image</string>
 
 </resources>

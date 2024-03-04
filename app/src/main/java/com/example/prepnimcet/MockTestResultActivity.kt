@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.prepnimcet.databinding.ActivityMockTestResultBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 class MockTestResultActivity : AppCompatActivity() {
@@ -20,6 +23,13 @@ class MockTestResultActivity : AppCompatActivity() {
         binding = ActivityMockTestResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setResult()
+        binding.mockTestDate?.setText(getCurrentDate())
+    }
+
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val cal = Calendar.getInstance()
+        return dateFormat.format(cal.time)
     }
 
     private fun setResult() {
