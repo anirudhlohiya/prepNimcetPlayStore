@@ -1,65 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/groupStylewhite_A700"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:context=".activity_welcome">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnLogin"
-        style="@style/btnSolidRounded"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        style="@style/groupStylewhite_A700"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_23pxh"
-        android:layout_marginTop="@dimen/_498pxv"
-        android:layout_marginEnd="@dimen/_22pxh"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:paddingStart="@dimen/_30pxh"
-        android:paddingTop="@dimen/_19pxv"
-        android:paddingEnd="@dimen/_30pxh"
-        android:paddingBottom="@dimen/_19pxv"
-        android:singleLine="true"
-        android:text="@string/lbl_login"
-        android:textAllCaps="false"
-        tools:text="@string/lbl_login" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:context=".activity_welcome">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnRegister"
-        style="@style/btnSolidRoundedOutline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_23pxh"
-        android:layout_marginTop="@dimen/_15pxv"
-        android:layout_marginEnd="@dimen/_22pxh"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:paddingStart="@dimen/_30pxh"
-        android:paddingTop="@dimen/_19pxv"
-        android:paddingEnd="@dimen/_30pxh"
-        android:paddingBottom="@dimen/_19pxv"
-        android:singleLine="true"
-        android:text="@string/lbl_register"
-        android:textAllCaps="false"
-        tools:text="@string/lbl_register" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            style="@style/btnSolidRounded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_23pxh"
+            android:layout_marginTop="@dimen/_498pxv"
+            android:layout_marginEnd="@dimen/_22pxh"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_19pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingBottom="@dimen/_19pxv"
+            android:singleLine="true"
+            android:text="@string/lbl_login"
+            android:textAllCaps="false"
+            tools:text="@string/lbl_login" />
 
-    <TextView
-        android:id="@+id/guest_user"
-        style="@style/txtUrbanistromanbold14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="@dimen/_23pxh"
-        android:layout_marginTop="@dimen/_141pxv"
-        android:layout_marginEnd="@dimen/_23pxh"
-        android:layout_marginBottom="@dimen/_28pxv"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:text="@string/msg_continue_as_a_g"
-        tools:text="@string/msg_continue_as_a_g" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRegister"
+            style="@style/btnSolidRoundedOutline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_23pxh"
+            android:layout_marginTop="@dimen/_15pxv"
+            android:layout_marginEnd="@dimen/_22pxh"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_19pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingBottom="@dimen/_19pxv"
+            android:singleLine="true"
+            android:text="@string/lbl_register"
+            android:textAllCaps="false"
+            tools:text="@string/lbl_register" />
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

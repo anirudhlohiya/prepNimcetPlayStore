@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -42,6 +45,31 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         )
+
+        FirebaseAuth.getInstance().addAuthStateListener { firebaseAuth ->
+            val user = firebaseAuth.currentUser
+            if (user != null) {
+                val firestore = FirebaseFirestore.getInstance()
+                val userRef = firestore.collection("users").document(user.uid)
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    userRef.get().addOnSuccessListener { document ->
+                        val name = document.getString("name")
+                        val email = document.getString("email")
+
+                        val navigationView = binding.navigationDrawer
+                        val headerView = navigationView.getHeaderView(0)
+                        val userName = headerView.findViewById<TextView>(R.id.drawer_user_name)
+                        val userEmail = headerView.findViewById<TextView>(R.id.drawer_user_email)
+
+                        userName.text = name
+                        userEmail.text = email
+                    }
+                }, 1000) // delay of 2 seconds
+            }
+        }
+
+
         //Code for Navigation Drawer
         binding.navigationDrawer.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -134,7 +162,8 @@ class MainActivity : AppCompatActivity() {
 
             if (message.isNotEmpty()) {
                 userRef.get().addOnSuccessListener { document ->
-                    val feedbackCount = document.data?.filterKeys { it.startsWith("feedback") }?.size ?: 0
+                    val feedbackCount =
+                        document.data?.filterKeys { it.startsWith("feedback") }?.size ?: 0
                     val newFeedbackField = "feedback${feedbackCount + 1}"
 
                     val feedbackData = mapOf(
@@ -152,14 +181,23 @@ class MainActivity : AppCompatActivity() {
 
                     userRef.update(userFeedbackData).addOnSuccessListener {
                         feedbackRef.update(feedbackData).addOnSuccessListener {
-                            Toast.makeText(this, "Your feedback has been successfully submitted", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this,
+                                "Your feedback has been successfully submitted",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             feedbackDialog.dismiss()
                         }.addOnFailureListener { e ->
                             feedbackRef.set(feedbackData).addOnSuccessListener {
-                                Toast.makeText(this, "Your feedback has been successfully submitted", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Your feedback has been successfully submitted",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 feedbackDialog.dismiss()
                             }.addOnFailureListener { e2 ->
-                                Toast.makeText(this, "Error: ${e2.message}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Error: ${e2.message}", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
                     }.addOnFailureListener { e ->

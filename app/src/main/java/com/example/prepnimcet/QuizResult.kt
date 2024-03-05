@@ -18,10 +18,14 @@ class QuizResult : AppCompatActivity() {
         binding.textView8.text = getMessageForScore(score)
 
         binding.sharBtn.setOnClickListener {
-            // send the user to the quiz fragment
-            val intent = Intent(this, QuizFragment::class.java)
-            startActivity(intent)
-            finish()
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                "I scored $score/5 in the NIMCET Quiz. Can you beat my score?"
+            )
+            intent.type = "text/plain"
+            startActivity(Intent.createChooser(intent, "Share with"))
         }
 
         binding.restaratBtn.setOnClickListener {

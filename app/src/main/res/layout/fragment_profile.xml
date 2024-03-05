@@ -12,26 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/updateBtn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/rectangle_bg_gray_900_radius_8"
-            android:fontFamily="@font/urbanist"
-            android:text="YOUR DETAILS"
-            android:textColor="@color/button_fg"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/emailBox"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <!--        <androidx.appcompat.widget.AppCompatButton-->
+        <!--            android:id="@+id/updateBtn"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="16dp"-->
+        <!--            android:layout_marginTop="36dp"-->
+        <!--            android:layout_marginEnd="16dp"-->
+        <!--            android:layout_marginBottom="16dp"-->
+        <!--            android:background="@drawable/rectangle_bg_gray_900_radius_8"-->
+        <!--            android:fontFamily="@font/urbanist"-->
+        <!--            android:text="YOUR DETAILS"-->
+        <!--            android:textColor="@color/button_fg"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/emailBox"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.0"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <EditText
             android:id="@+id/emailBox"
@@ -41,16 +40,16 @@
             android:layout_marginTop="36dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/rectangle_bg_gray_50_border_gray_300_radius_8"
+            android:drawableEnd="@drawable/email"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/black"
+            android:drawableTint="@color/gray"
             android:ems="10"
             android:hint="Email Address"
             android:inputType="textPersonName"
             android:padding="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateBtn" />
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/mobileNumberBox"
@@ -60,11 +59,12 @@
             android:layout_marginTop="36dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/rectangle_bg_gray_50_border_gray_300_radius_8"
+            android:drawableEnd="@drawable/phone"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/black"
+            android:drawableTint="@color/gray"
             android:ems="10"
             android:hint="Mobile Number"
-            android:inputType="textVisiblePassword"
+            android:inputType="phone"
             android:padding="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,15 +93,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/courseSpinner" />
 
-
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/updateDetailsBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Update Details"
-            android:visibility="gone"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rectangle_bg_gray_900_radius_8"
+            android:fontFamily="@font/urbanist"
+            android:text="UPDATE YOUR DETAILS"
+            android:textColor="@color/button_fg"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/datePickerTrigger" />
 
@@ -113,8 +120,9 @@
             android:layout_marginTop="36dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/rectangle_bg_gray_50_border_gray_300_radius_8"
+            android:drawableEnd="@drawable/account"
             android:drawablePadding="10dp"
-            android:drawableTint="@color/black"
+            android:drawableTint="@color/gray"
             android:ems="10"
             android:hint="Name"
             android:inputType="textPersonName"
@@ -124,6 +132,5 @@
             app:layout_constraintTop_toBottomOf="@+id/emailBox" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </ScrollView>
