@@ -1,6 +1,6 @@
 package com.example.prepnimcet
 
-data class BlogData(
+data class ArticleData(
     val title: String? = null,
     val author: String? = null,
     val date: String? = null,

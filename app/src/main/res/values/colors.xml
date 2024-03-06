@@ -44,4 +44,8 @@
     <color name="red">#FF0000</color>
     <color name="light_red">#FF7F7F</color>
 
+    <color name="colorPrimary">#628ecb</color>
+    <color name="colorAccent">#000</color>
+
+
 </resources>

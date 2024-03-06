@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.example.prepnimcet.databinding.ActivityDetailBlogBinding
 
-class DetailBlogActivity : AppCompatActivity() {
+class DetailArticleActivity : AppCompatActivity() {
     private lateinit var binding:ActivityDetailBlogBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

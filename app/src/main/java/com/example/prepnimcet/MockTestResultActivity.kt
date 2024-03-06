@@ -2,6 +2,7 @@ package com.example.prepnimcet
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.prepnimcet.databinding.ActivityMockTestResultBinding
 import com.google.gson.Gson
@@ -11,36 +12,33 @@ import java.util.Calendar
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
+@Suppress("DEPRECATION")
 class MockTestResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMockTestResultBinding
-    private lateinit var mockTestQuestionData: ArrayList<MockTestQuestionData>
+    private lateinit var mockTestQuestionDataList: ArrayList<MockTestQuestionDataForResult>
     private var correctAnswer = 0
     private var incorrectAnswer = 0
     private var unAttemptAnswer = 0
     private var marks = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMockTestResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setResult()
-        binding.mockTestDate?.setText(getCurrentDate())
+        binding.mockTestDate?.text = getCurrentDate()
     }
 
-    private fun getCurrentDate(): String {
-        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-        val cal = Calendar.getInstance()
-        return dateFormat.format(cal.time)
-    }
 
     private fun setResult() {
         // Retrieve the serialized JSON string from the intent extra
-        val mocktestData: String? = intent.getStringExtra("MockTestData")
+        val mockTestDataForResult: String? = intent.getStringExtra("MockTestDataForResult")
         // Deserialize the JSON string back into a list of MockTestQuestionData objects using Gson
-        mockTestQuestionData = Gson().fromJson(
-            mocktestData,
-            object : TypeToken<ArrayList<MockTestQuestionData>>() {}.type
+        mockTestQuestionDataList = Gson().fromJson(
+            mockTestDataForResult,
+            object : TypeToken<ArrayList<MockTestQuestionDataForResult>>() {}.type
         )
-
+        Log.d("Mock Test", mockTestDataForResult.toString())
         setQuestionNumber()
         //Set the how much time is taken for mock test
         setTotalTime()
@@ -52,35 +50,42 @@ class MockTestResultActivity : AppCompatActivity() {
     }
 
     private fun setQuestionNumber() {
-        //Iterate over the list and compare userAnswer with answer for each set of answers
-        for ((index, mockTestQuestionData) in mockTestQuestionData.withIndex()) {
-            val userAnswer = mockTestQuestionData.userAnswer
-            val answer = mockTestQuestionData.answer
-            // Check if the user's answer matches the correct answer for the current set
-            when (userAnswer) {
-                answer -> {
-                    // If they match, increment the correct count
-                    correctAnswer++
-                    marks += 8
-                }
+        // Calculate marks based on provided rules
+        calculateMarks()
 
-                null -> {
-                    //If they have null,increment the un-attempt count
-                    unAttemptAnswer++
-                }
-
-                else -> {
-                    // If they don't match, increment the incorrect count
-                    incorrectAnswer++
-                }
-            }
-        }
         binding.totalCorrectAnswer?.text = "$correctAnswer"
         binding.totalIncorrectAnswer?.text = "$incorrectAnswer"
         binding.totalUnattemptedQuestion?.text = "$unAttemptAnswer"
         binding.totalScore?.text = "$marks"
     }
 
+    private fun calculateMarks() {
+        for ((index, mockTestQuestionData) in mockTestQuestionDataList.withIndex()) {
+            val userAnswer = mockTestQuestionData.userAnswer
+            val answer = mockTestQuestionData.answer
+
+            // Check if the user's answer is null or not
+            if (userAnswer == null) {
+                unAttemptAnswer++
+                continue
+            }
+            // Check if the user's answer matches the correct answer for the current set
+            if (userAnswer == answer) {
+                when {
+                    index < 50 -> marks += 12
+                    index in 50..109 -> marks += 6
+                    index in 110..119 -> marks += 4
+//                    index < 50 -> marks += 12
+//                    index < 110 -> marks += 6
+//                    else -> marks += 4
+                }
+                correctAnswer++
+            } else {
+                marks-- // Deduct 1 mark for incorrect answer
+                incorrectAnswer++
+            }
+        }
+    }
 
     private fun setTotalTime() {
         // Retrieve the elapsed time from intent extras
@@ -98,11 +103,18 @@ class MockTestResultActivity : AppCompatActivity() {
         binding.totalTime?.text = formattedTime
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val backIntent = Intent(this, MainActivity::class.java)
         startActivity(backIntent)
         finish() // Call finish to close the current activity
         super.onBackPressed()
+    }
+
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val cal = Calendar.getInstance()
+        return dateFormat.format(cal.time)
     }
 
 }

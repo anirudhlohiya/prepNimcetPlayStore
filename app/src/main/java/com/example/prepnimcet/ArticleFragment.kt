@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.content.Intent
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.prepnimcet.databinding.FragmentHomeBinding
+import com.example.prepnimcet.databinding.FragmentArticleBinding
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,18 +16,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 
-class HomeFragment : Fragment() {
-    private var binding: FragmentHomeBinding? = null
-    private lateinit var blogList:ArrayList<BlogData>
-    private lateinit var blogAdapter: BlogAdapter
+class ArticleFragment : Fragment() {
+    private var binding: FragmentArticleBinding? = null
+    private lateinit var blogList:ArrayList<ArticleData>
+    private lateinit var articleAdapter: ArticleAdapter
     private lateinit var database:FirebaseFirestore
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentArticleBinding.inflate(inflater, container, false)
         return binding?.root
     }
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,13 +33,13 @@ class HomeFragment : Fragment() {
         binding?.recyclerview?.setHasFixedSize(false)
 
         blogList= ArrayList()
-        blogAdapter= BlogAdapter(blogList)
-        binding?.recyclerview?.adapter =blogAdapter
+        articleAdapter= ArticleAdapter(blogList)
+        binding?.recyclerview?.adapter =articleAdapter
 
         fetchBlogData()
-        blogAdapter.setOnItemClickListener(object :BlogAdapter.OnItemClickListener{
+        articleAdapter.setOnItemClickListener(object :ArticleAdapter.OnItemClickListener{
             override fun onItemClick(position: Int) {
-                val intent=Intent(requireContext(),DetailBlogActivity::class.java)
+                val intent=Intent(requireContext(),DetailArticleActivity::class.java)
 
                 intent.putExtra("title",blogList[position].title)
                 intent.putExtra("author",blogList[position].author)
@@ -70,10 +67,10 @@ class HomeFragment : Fragment() {
                         }
                         for(dc:DocumentChange in value?.documentChanges!!){
                             if(dc.type==DocumentChange.Type.ADDED){
-                                blogList.add(dc.document.toObject(BlogData::class.java))
+                                blogList.add(dc.document.toObject(ArticleData::class.java))
                             }
                         }
-                        blogAdapter.notifyDataSetChanged()
+                        articleAdapter.notifyDataSetChanged()
                         binding?.recyclerview?.clearFocus()
                     }
 
@@ -82,6 +79,6 @@ class HomeFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = HomeFragment()
+        fun newInstance() = ArticleFragment()
     }
 }

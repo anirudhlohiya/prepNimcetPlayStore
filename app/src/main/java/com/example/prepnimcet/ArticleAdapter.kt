@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class BlogAdapter(private val blogList: ArrayList<BlogData>) :
-    RecyclerView.Adapter<BlogAdapter.ViewHolder>() {
+class ArticleAdapter(private val blogList: ArrayList<ArticleData>) :
+    RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
     private lateinit var myListener:OnItemClickListener
     interface OnItemClickListener {
@@ -33,7 +33,7 @@ class BlogAdapter(private val blogList: ArrayList<BlogData>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view=LayoutInflater.from(parent.context).inflate(R.layout.blog_item,parent,false)
+        val view=LayoutInflater.from(parent.context).inflate(R.layout.article_item,parent,false)
         return ViewHolder(view,myListener)
     }
 

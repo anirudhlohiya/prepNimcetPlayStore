@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/color2"
     android:fitsSystemWindows="true"
-    tools:context=".DetailBlogActivity">
+    tools:context=".DetailArticleActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -38,7 +38,7 @@
                     android:layout_margin="@dimen/dimen_8dp"
                     android:lineSpacingExtra="4sp"
                     android:padding="@dimen/dimen_8dp"
-                    android:text="@string/blog_title"
+                    android:text="@string/articles_title"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textIsSelectable="true"
@@ -59,7 +59,7 @@
                     android:layout_margin="4dp"
                     android:lineSpacingExtra="4sp"
                     android:padding="@dimen/dimen_8dp"
-                    android:text="@string/blog_author"
+                    android:text="@string/articles_author"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dimen_16sp"
@@ -74,7 +74,7 @@
                     android:gravity="end"
                     android:lineSpacingExtra="4sp"
                     android:padding="@dimen/dimen_8dp"
-                    android:text="@string/blog_date"
+                    android:text="@string/articles_date"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
                     android:textSize="@dimen/dimen_16sp"

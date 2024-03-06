@@ -8,8 +8,13 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Base64
 import android.util.Log
+//import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -19,13 +24,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import java.util.concurrent.TimeUnit
 
+@Suppress("DEPRECATION")
 class DetailMockTestActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailMockTestBinding
     private lateinit var mocktestQuestionList: ArrayList<MockTestQuestionData>
     private lateinit var database: FirebaseFirestore
     private lateinit var mocktestOptionAdapter: MocktestOptionAdapter
     private var currentQuestionIndex: Int = 0
-
+    private lateinit var unansweredIndicator: TextView
     // Define a variable to store the start time of the countdown timer
     private var startTimeMillis: Long = 0
 
@@ -34,12 +40,16 @@ class DetailMockTestActivity : AppCompatActivity() {
         binding = ActivityDetailMockTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         mocktestQuestionList = ArrayList()
         val id = intent.getStringExtra("id")
         val title = intent.getStringExtra("title")
         fetchQuestionAndOption(id, title)
 
+        setupCustomActionBar()
+
         countdownTimer()
+
         binding.btnPrevious.setOnClickListener {
             showPreviousQuestion()
         }
@@ -49,10 +59,80 @@ class DetailMockTestActivity : AppCompatActivity() {
         }
 
         binding.btnSubmit.setOnClickListener {
-            // Calculate the elapsed time when the submit button is clicked
-            val elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis
-            submitMockTest(elapsedTimeMillis)
+
+            // Build the alert dialog
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Exit Mock Test")
+            builder.setMessage("Are you sure you want to Submit the Mock Test?")
+
+            builder.setPositiveButton("Submit") { _, _ ->
+                val elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis
+                submitMockTest(elapsedTimeMillis)
+            }
+            builder.setNegativeButton("Cancel") { dialog, _ ->
+                // Dismiss the dialog
+                dialog.dismiss()
+            }
+
+            // Create and show the dialog
+            val dialog = builder.create()
+            dialog.show()
+
         }
+
+    }
+// Inside your activity or fragment
+
+    private fun setupCustomActionBar() {
+        // Inflate the custom action bar layout
+        val customActionBarView = layoutInflater.inflate(R.layout.custom_action_bar_layout, null)
+
+        // Add the custom view to the action bar
+        supportActionBar?.apply {
+            setDisplayShowCustomEnabled(true)
+            setCustomView(customActionBarView)
+            setDisplayHomeAsUpEnabled(true)
+        }
+
+        // Reference to elements in the custom action bar layout
+        val spinnerQuestionSelector: Spinner = customActionBarView.findViewById(R.id.spinnerQuestionSelector)
+        unansweredIndicator= customActionBarView.findViewById(R.id.unansweredIndicator)
+
+        // Set up spinner adapter and listener
+        val questionNumbers = (1..120).toList()
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, questionNumbers)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerQuestionSelector.adapter = spinnerAdapter
+        spinnerQuestionSelector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                // Navigate to the selected question
+                if (mocktestQuestionList.isNotEmpty()) {
+                    // Navigate to the selected question
+                    currentQuestionIndex = position
+                    showQuestion(mocktestQuestionList[currentQuestionIndex])
+
+                    // Update unanswered questions indicator
+                    updateUnansweredIndicator()
+                } else {
+                    // Handle the situation when mocktestQuestionList is empty
+                    // You can either prevent further execution or fetch the data again
+                    // Example: fetchQuestionAndOption(id, title)
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Handle when nothing is selected
+            }
+        }
+
+        // Update the unanswered questions indicator initially
+        updateUnansweredIndicator()
+    }
+
+    private fun updateUnansweredIndicator() {
+        // Logic to determine and update the unanswered questions indicator
+        val unansweredQuestionsCount = mocktestQuestionList.count { it.userAnswer.isNullOrEmpty() }
+        unansweredIndicator.text = "Unanswered: $unansweredQuestionsCount"
     }
 
     private fun fetchQuestionAndOption(id: String?, title: String?) {
@@ -82,17 +162,16 @@ class DetailMockTestActivity : AppCompatActivity() {
         binding.mockTestQuestion.text = questionData.question
 
         val imageString = questionData.imageString
-        if (imageString != null) {
+//        Log.d("Image String", imageString.toString())
+        if (imageString != null && imageString != "null") {
             // Decode the image string and set it to the ImageView
             val bitmap = decodeBase64ToBitmap(imageString)
-            binding.mockTestQuestionImage.setImageBitmap(bitmap)
-            // Make the ImageView visible
             binding.mockTestQuestionImage.visibility = View.VISIBLE
+            binding.mockTestQuestionImage.setImageBitmap(bitmap)
         } else {
             // Make the ImageView gone
             binding.mockTestQuestionImage.visibility = View.GONE
         }
-
 
         //Set the Options on View by Recycler View
         mocktestOptionAdapter = MocktestOptionAdapter(this, questionData)
@@ -100,7 +179,6 @@ class DetailMockTestActivity : AppCompatActivity() {
         binding.mockTestOptionRecyclerview.adapter = mocktestOptionAdapter
         binding.mockTestOptionRecyclerview.setHasFixedSize(true)
 
-        //navigate between question and option
         navigationBetweenQuestion()
     }
 
@@ -177,9 +255,15 @@ class DetailMockTestActivity : AppCompatActivity() {
 
     private fun submitMockTest(elapsedTimeMillis: Long) {
         val intent = Intent(this, MockTestResultActivity::class.java)
-        val json: String = Gson().toJson(mocktestQuestionList)
-        intent.putExtra("MockTestData", json)
-
+        val mockTestQuestionDataForResultList = mocktestQuestionList.map { questionData ->
+            MockTestQuestionDataForResult(
+                question = questionData.question,
+                answer = questionData.answer,
+                userAnswer = questionData.userAnswer
+            )
+        }
+        val json: String = Gson().toJson(mockTestQuestionDataForResultList)
+        intent.putExtra("MockTestDataForResult", json)
         // Pass the elapsed time to MockTestResultActivity
         intent.putExtra("ElapsedTime", elapsedTimeMillis)
 
@@ -198,6 +282,7 @@ class DetailMockTestActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Build the alert dialog
         val builder = AlertDialog.Builder(this)
@@ -205,14 +290,14 @@ class DetailMockTestActivity : AppCompatActivity() {
         builder.setMessage("Are you sure you want to exit the mock test?")
 
         // Set up the buttons
-        builder.setPositiveButton("Exit") { dialog, which ->
+        builder.setPositiveButton("Exit") { _, _ ->
             super.onBackPressed() // Exit the activity
         }
-        builder.setNegativeButton("Cancel") { dialog, which ->
+        builder.setNegativeButton("Cancel") { dialog, _ ->
             // Dismiss the dialog
             dialog.dismiss()
         }
-        builder.setNeutralButton("Submit") { dialog, which ->
+        builder.setNeutralButton("Submit") { _, _ ->
             // Calculate the elapsed time and submit the mock test
             val elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis
             submitMockTest(elapsedTimeMillis)
@@ -228,13 +313,13 @@ class DetailMockTestActivity : AppCompatActivity() {
         builder.setTitle("Exit Mock Test")
         builder.setMessage("Are you sure you want to exit the mock test?")
 
-        builder.setPositiveButton("Exit") { dialog, which ->
+        builder.setPositiveButton("Exit") { _, _ ->
             finish() // Exit the activity
         }
-        builder.setNegativeButton("Cancel") { dialog, which ->
+        builder.setNegativeButton("Cancel") { dialog, _ ->
             dialog.dismiss()
         }
-        builder.setNeutralButton("Submit") { dialog, which ->
+        builder.setNeutralButton("Submit") { _, _ ->
             val elapsedTimeMillis = System.currentTimeMillis() - startTimeMillis
             submitMockTest(elapsedTimeMillis)
             finish()

@@ -22,10 +22,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         setSupportActionBar(binding.toolbar)
         toggle =
@@ -45,8 +48,9 @@ class MainActivity : AppCompatActivity() {
         //Code for Navigation Drawer
         binding.navigationDrawer.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.share_icon -> Toast.makeText(applicationContext, "Share", Toast.LENGTH_SHORT)
-                    .show()
+                R.id.share_icon -> {
+                    Toast.makeText(applicationContext, "Share", Toast.LENGTH_SHORT).show()
+                }
 
                 R.id.feedback_icon -> feedbackDialog()
 
@@ -74,8 +78,8 @@ class MainActivity : AppCompatActivity() {
         //Code for Bottom Navigation Bar
         binding.bottomNavigationBar.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.home_bar_icon -> {
-                    loadFragment(HomeFragment.newInstance())
+                R.id.article_bar_icon -> {
+                    loadFragment(ArticleFragment.newInstance())
                 }
 
                 R.id.quiz_bar_icon -> {
@@ -93,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
         //Default Bottom bar option will be select by this
-        binding.bottomNavigationBar.selectedItemId = R.id.home_bar_icon
+        binding.bottomNavigationBar.selectedItemId = R.id.article_bar_icon
 
     }
 
@@ -134,7 +138,8 @@ class MainActivity : AppCompatActivity() {
 
             if (message.isNotEmpty()) {
                 userRef.get().addOnSuccessListener { document ->
-                    val feedbackCount = document.data?.filterKeys { it.startsWith("feedback") }?.size ?: 0
+                    val feedbackCount =
+                        document.data?.filterKeys { it.startsWith("feedback") }?.size ?: 0
                     val newFeedbackField = "feedback${feedbackCount + 1}"
 
                     val feedbackData = mapOf(
@@ -152,14 +157,23 @@ class MainActivity : AppCompatActivity() {
 
                     userRef.update(userFeedbackData).addOnSuccessListener {
                         feedbackRef.update(feedbackData).addOnSuccessListener {
-                            Toast.makeText(this, "Your feedback has been successfully submitted", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this,
+                                "Your feedback has been successfully submitted",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             feedbackDialog.dismiss()
                         }.addOnFailureListener { e ->
                             feedbackRef.set(feedbackData).addOnSuccessListener {
-                                Toast.makeText(this, "Your feedback has been successfully submitted", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Your feedback has been successfully submitted",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 feedbackDialog.dismiss()
                             }.addOnFailureListener { e2 ->
-                                Toast.makeText(this, "Error: ${e2.message}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Error: ${e2.message}", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
                     }.addOnFailureListener { e ->
@@ -176,7 +190,6 @@ class MainActivity : AppCompatActivity() {
         val dialogBuilder = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.about_dialog_box, null)
         dialogBuilder.setView(dialogView)
-//            .setTitle("About")
         val aboutDialog: AlertDialog = dialogBuilder.create()
         aboutDialog.show()
         val closeButton = dialogView.findViewById<Button>(R.id.aboutDialogCloseBtn)
