@@ -8,13 +8,8 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Base64
 import android.util.Log
-//import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -31,7 +26,7 @@ class DetailMockTestActivity : AppCompatActivity() {
     private lateinit var database: FirebaseFirestore
     private lateinit var mocktestOptionAdapter: MocktestOptionAdapter
     private var currentQuestionIndex: Int = 0
-    private lateinit var unansweredIndicator: TextView
+
     // Define a variable to store the start time of the countdown timer
     private var startTimeMillis: Long = 0
 
@@ -40,13 +35,10 @@ class DetailMockTestActivity : AppCompatActivity() {
         binding = ActivityDetailMockTestBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         mocktestQuestionList = ArrayList()
         val id = intent.getStringExtra("id")
         val title = intent.getStringExtra("title")
         fetchQuestionAndOption(id, title)
-
-        setupCustomActionBar()
 
         countdownTimer()
 
@@ -80,59 +72,6 @@ class DetailMockTestActivity : AppCompatActivity() {
 
         }
 
-    }
-// Inside your activity or fragment
-
-    private fun setupCustomActionBar() {
-        // Inflate the custom action bar layout
-        val customActionBarView = layoutInflater.inflate(R.layout.custom_action_bar_layout, null)
-
-        // Add the custom view to the action bar
-        supportActionBar?.apply {
-            setDisplayShowCustomEnabled(true)
-            setCustomView(customActionBarView)
-            setDisplayHomeAsUpEnabled(true)
-        }
-
-        // Reference to elements in the custom action bar layout
-        val spinnerQuestionSelector: Spinner = customActionBarView.findViewById(R.id.spinnerQuestionSelector)
-        unansweredIndicator= customActionBarView.findViewById(R.id.unansweredIndicator)
-
-        // Set up spinner adapter and listener
-        val questionNumbers = (1..120).toList()
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, questionNumbers)
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerQuestionSelector.adapter = spinnerAdapter
-        spinnerQuestionSelector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // Navigate to the selected question
-                if (mocktestQuestionList.isNotEmpty()) {
-                    // Navigate to the selected question
-                    currentQuestionIndex = position
-                    showQuestion(mocktestQuestionList[currentQuestionIndex])
-
-                    // Update unanswered questions indicator
-                    updateUnansweredIndicator()
-                } else {
-                    // Handle the situation when mocktestQuestionList is empty
-                    // You can either prevent further execution or fetch the data again
-                    // Example: fetchQuestionAndOption(id, title)
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Handle when nothing is selected
-            }
-        }
-
-        // Update the unanswered questions indicator initially
-        updateUnansweredIndicator()
-    }
-
-    private fun updateUnansweredIndicator() {
-        // Logic to determine and update the unanswered questions indicator
-        val unansweredQuestionsCount = mocktestQuestionList.count { it.userAnswer.isNullOrEmpty() }
-        unansweredIndicator.text = "Unanswered: $unansweredQuestionsCount"
     }
 
     private fun fetchQuestionAndOption(id: String?, title: String?) {

@@ -22,11 +22,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var auth: FirebaseAuth
-    private lateinit var database: FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -191,7 +190,7 @@ class MainActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                             feedbackDialog.dismiss()
-                        }.addOnFailureListener { e ->
+                        }.addOnFailureListener {
                             feedbackRef.set(feedbackData).addOnSuccessListener {
                                 Toast.makeText(
                                     this,
@@ -247,6 +246,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Code for Back Pressed Button Action
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
