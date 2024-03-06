@@ -10,12 +10,12 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="86dp"
+        android:layout_height="88dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/app_logo"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo_transparent" />
 
     <TextView
         android:id="@+id/drawer_user_name"

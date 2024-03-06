@@ -39,7 +39,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.updateDetailsBtn.visibility = View.INVISIBLE
+        binding.updateDetailsBtn.visibility = View.VISIBLE
 
         // Initialize Firebase Firestore
         val firestore = FirebaseFirestore.getInstance()
@@ -55,9 +55,9 @@ class ProfileFragment : Fragment() {
                     if (document != null) {
                         val name = document.getString("name")
                         val email = document.getString("email")
-                        val mobileNumber = document.getString("mobileNumber")
-                        val course = document.getString("course")
-                        val dob = document.getString("dob")
+                        val mobileNumber = document.getString("mobileNumber") ?: ""
+                        val course = document.getString("course") ?: ""
+                        val dob = document.getString("dob") ?: "Click to Select Your Date of Birth"
 
                         binding.nameBox.setText(name)
                         binding.emailBox.setText(email)
@@ -66,6 +66,7 @@ class ProfileFragment : Fragment() {
                         binding.datePickerTrigger.text = dob
 
                         binding.emailBox.isEnabled = false
+
                     }
                 }
                 .addOnFailureListener { exception ->
@@ -81,6 +82,7 @@ class ProfileFragment : Fragment() {
         spinner.adapter = adapter
 
         val datePickerTrigger: TextView = view.findViewById(R.id.datePickerTrigger)
+        datePickerTrigger.visibility = View.VISIBLE
         datePickerTrigger.setOnClickListener {
             showDatePicker()
         }
@@ -90,30 +92,6 @@ class ProfileFragment : Fragment() {
         val datePickerTriger: TextView = binding.datePickerTrigger
         val updateDetailsBtn: Button = binding.updateDetailsBtn
 
-
-        val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                // Check if the mobile number is valid
-                if (isValidMobile(s.toString())) {
-                    updateDetailsBtn.visibility = View.VISIBLE
-                } else {
-                    updateDetailsBtn.visibility = View.INVISIBLE
-                    Toast.makeText(context, "Invalid mobile number", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            // Function to validate mobile number
-            private fun isValidMobile(phone: String): Boolean {
-                return Patterns.PHONE.matcher(phone).matches()
-            }
-
-            override fun afterTextChanged(s: Editable) {}
-        }
-
-
-        mobileNumberBox.addTextChangedListener(textWatcher)
         courseSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -136,14 +114,23 @@ class ProfileFragment : Fragment() {
             val userMap = hashMapOf<String, Any>()
 
             val name = binding.nameBox.text.toString()
-            val email = binding.emailBox.text.toString()
             val mobileNumber = mobileNumberBox.text.toString()
             val course = courseSpinner.selectedItem.toString()
             val dob = datePickerTrigger.text.toString()
 
-            if (name.isNotEmpty()) userMap["name"] = name
-            if (email.isNotEmpty()) userMap["email"] = email
-            if (mobileNumber.isNotEmpty()) userMap["mobileNumber"] = mobileNumber
+            if (name.isEmpty()) {
+                Toast.makeText(context, "Name field cannot be empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (mobileNumber.isNotEmpty()) {
+                if (isValidMobile(mobileNumber)) {
+                    userMap["mobileNumber"] = mobileNumber
+                } else {
+                    Toast.makeText(context, "Invalid mobile number", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
             if (course.isNotEmpty()) userMap["course"] = course
             if (dob.isNotEmpty()) userMap["dob"] = dob
 
@@ -159,6 +146,10 @@ class ProfileFragment : Fragment() {
                     }
             }
         }
+    }
+
+    private fun isValidMobile(phone: String): Boolean {
+        return phone.length == 10
     }
 
     private fun getIndex(spinner: Spinner, myString: String?): Int {
