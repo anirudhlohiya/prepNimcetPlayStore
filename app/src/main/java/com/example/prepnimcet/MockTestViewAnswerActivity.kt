@@ -31,7 +31,7 @@ class MockTestViewAnswerActivity : AppCompatActivity() {
         val builder = StringBuilder("")
         for (questionData in mockTestQuestionDataList) {
             val questionNumber = index++
-            builder.append("<font color'#18206F'><b>$questionNumber" + ".Question:\n ${questionData.question}</b></font><br/><br/>")
+            builder.append("<font color'#18206F'><b>$questionNumber" + ".</br>${questionData.question}</b></font><br/><br/>")
             builder.append("<font color='#009688'>Answer : ${questionData.answer}</font><br/><br/>")
             if (!questionData.userAnswer.isNullOrEmpty()) {
                 if (questionData.answer == questionData.userAnswer) {
@@ -40,7 +40,7 @@ class MockTestViewAnswerActivity : AppCompatActivity() {
                     builder.append("<font color='#FF0000'>Your Answer : ${questionData.userAnswer}</font><br/><br/>")
                 }
             } else {
-                builder.append("<font color='#FF0000'>Your Answer : Not Attempted</font><br/><br/>")
+                builder.append("<font color='#FF0000'>Your Answer : Unattempted</font><br/><br/>")
             }
         }
         binding.txtAnswer.text = Html.fromHtml(builder.toString(), Html.FROM_HTML_MODE_COMPACT)
