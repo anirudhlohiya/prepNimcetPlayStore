@@ -1,5 +1,6 @@
 package com.example.prepnimcet
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MocktestOptionAdapter(val content: Context, var questionData: MockTestQuestionData) :
+class MocktestOptionAdapter(
+    val content: Context, private var questionData: MockTestQuestionData
+) :
     RecyclerView.Adapter<MocktestOptionAdapter.OptionViewHolder>() {
 
     private var options: ArrayList<String?> = arrayListOf(
@@ -27,8 +30,10 @@ class MocktestOptionAdapter(val content: Context, var questionData: MockTestQues
         return OptionViewHolder(view)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: OptionViewHolder, position: Int) {
         holder.option?.text = options[position]
+
         holder.option?.setOnClickListener {
             questionData.userAnswer = options[position]
             notifyDataSetChanged()
@@ -38,6 +43,8 @@ class MocktestOptionAdapter(val content: Context, var questionData: MockTestQues
         } else {
             holder.option?.setBackgroundResource(R.drawable.mocktest_option_item_bg)
         }
+
+
     }
 
     override fun getItemCount(): Int {

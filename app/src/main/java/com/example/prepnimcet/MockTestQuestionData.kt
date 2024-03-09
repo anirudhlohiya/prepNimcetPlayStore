@@ -8,5 +8,6 @@ data class MockTestQuestionData(
     var optionD: String? = null,
     var answer: String? = null,
     var imageString: String? = null,
-    var userAnswer: String? = null
+    var userAnswer: String? = null,
+    var isVisited: Boolean = false
 )

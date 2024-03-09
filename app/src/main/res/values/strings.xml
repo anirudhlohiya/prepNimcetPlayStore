@@ -122,5 +122,9 @@
     <string name="incorrect_answer">Incorrect Answer</string>
     <string name="unattempted_questions">Unattempted Questions</string>
     <string name="question_image">Question Image</string>
+    <string name="question_list">Question List</string>
+    <string name="view_answer">View Answer</string>
+    <string name="user_answer">User Answer</string>
+    <string name="answer">Answer</string>
 
 </resources>

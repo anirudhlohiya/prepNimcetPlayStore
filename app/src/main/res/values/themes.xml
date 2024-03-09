@@ -18,4 +18,14 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+
+    <!-- Define your custom shape appearance -->
+    <style name="ShapeAppearance.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <!-- Customize corner size -->
+        <item name="cornerSize">8dp</item> <!-- Adjust the corner size as needed -->
+        <!-- Customize elevation -->
+        <item name="elevationOverlayEnabled">true</item> <!-- Enable elevation overlay -->
+        <item name="elevation">8dp</item> <!-- Adjust the elevation as needed -->
+    </style>
+
 </resources>

@@ -12,6 +12,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnQuestionList"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/dimen_8dp"
+            android:background="@color/Indigo"
+            android:gravity="center"
+            android:padding="@dimen/dimen_8dp"
+            android:text="@string/question_list"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/dimen_8dp" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_72dp"
@@ -103,8 +118,8 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="@dimen/dimen_164dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_8dp"
                 android:layout_gravity="start"
+                android:layout_margin="@dimen/dimen_8dp"
                 android:background="@color/Indigo"
                 android:text="@string/previous"
                 android:textColor="@color/white"
@@ -118,10 +133,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnNext"
-                android:layout_gravity="end"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="@dimen/dimen_164dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_margin="@dimen/dimen_8dp"
                 android:background="@color/Indigo"
                 android:text="@string/next"
@@ -136,10 +151,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSubmit"
-                android:layout_gravity="end"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="@dimen/dimen_164dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_margin="@dimen/dimen_8dp"
                 android:background="@color/Indigo"
                 android:text="@string/submit"

@@ -19,20 +19,25 @@ class MockTestResultActivity : AppCompatActivity() {
     private var correctAnswer = 0
     private var incorrectAnswer = 0
     private var unAttemptAnswer = 0
-    private var marks = 0
+    private var marks: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMockTestResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setResult()
-        binding.mockTestDate?.text = getCurrentDate()
-    }
-
-
-    private fun setResult() {
         // Retrieve the serialized JSON string from the intent extra
         val mockTestDataForResult: String? = intent.getStringExtra("MockTestDataForResult")
+        setResult(mockTestDataForResult)
+        binding.mockTestDate?.text = getCurrentDate()
+
+        binding.viewAnswer?.setOnClickListener {
+            val intent = Intent(this, MockTestViewAnswerActivity::class.java)
+            intent.putExtra("MockTestData",mockTestDataForResult)
+            startActivity(intent)
+        }
+    }
+
+    private fun setResult(mockTestDataForResult: String?) {
         // Deserialize the JSON string back into a list of MockTestQuestionData objects using Gson
         mockTestQuestionDataList = Gson().fromJson(
             mockTestDataForResult,
@@ -75,13 +80,16 @@ class MockTestResultActivity : AppCompatActivity() {
                     index < 50 -> marks += 12
                     index in 50..109 -> marks += 6
                     index in 110..119 -> marks += 4
-//                    index < 50 -> marks += 12
-//                    index < 110 -> marks += 6
-//                    else -> marks += 4
                 }
                 correctAnswer++
             } else {
-                marks-- // Deduct 1 mark for incorrect answer
+                // Apply negative marking based on question index range
+                val negativeMarks = when {
+                    index < 50 -> 3
+                    index in 50..109 -> 1.5
+                    else -> 1
+                }
+                marks -= negativeMarks.toDouble() // Deduct negative marks for incorrect answer
                 incorrectAnswer++
             }
         }
