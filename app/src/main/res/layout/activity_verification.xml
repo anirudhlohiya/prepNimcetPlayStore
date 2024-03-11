@@ -22,6 +22,7 @@
         tools:src="@drawable/img_checkmark" />
 
     <TextView
+        android:id="@+id/txtVerificationTitle"
         style="@style/txtUrbanistromanbold26"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +36,7 @@
         tools:text="@string/msg_verification" />
 
     <TextView
+        android:id="@+id/txtVerificationDetail"
         style="@style/txtUrbanistromanmedium15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

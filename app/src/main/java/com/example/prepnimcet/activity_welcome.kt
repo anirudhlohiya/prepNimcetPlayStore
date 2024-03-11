@@ -22,11 +22,12 @@ class activity_welcome : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            } else { //give user a toast to first verify email
-                Toast.makeText(
-                    this, "Kindly Verify Your Email", Toast.LENGTH_LONG
-                ).show()
             }
+//            } else { //give user a toast to first verify email
+//                Toast.makeText(
+//                    this, "Kindly Verify Your Email", Toast.LENGTH_LONG
+//                ).show()
+//            }
         }
 
 

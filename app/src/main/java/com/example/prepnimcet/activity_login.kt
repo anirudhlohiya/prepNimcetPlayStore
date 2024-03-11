@@ -13,6 +13,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -72,13 +74,38 @@ class activity_login : AppCompatActivity() {
                             updateEmailVerificationStatus(email)
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
+                            // want to finish all the activites in the background
+                            finishAffinity()
                             finish()
+//                            finishAffinity()
                         } else {
                             Toast.makeText(this, "Email is not verified", Toast.LENGTH_LONG).show()
                         }
 
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG).show()
+                        // want to show a specific message for each exception
+                        when (it.exception) {
+                            is FirebaseAuthInvalidUserException -> {
+                                Toast.makeText(
+                                    this,
+                                    "The email address is not registered.",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                            is FirebaseAuthInvalidCredentialsException -> {
+                                Toast.makeText(
+                                    this,
+                                    "The password is incorrect.",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                            else -> {
+                                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_LONG)
+                                    .show()
+                            }
+                        }
                     }
                 }
             } else {
@@ -130,11 +157,10 @@ class activity_login : AppCompatActivity() {
                         val email = account.email.toString()
                         val name = account.displayName.toString()
                         saveUserInfoToDatabase(email, name, true)
-
                         // Continue with your logic (e.g., navigate to MainActivity)
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
-                        finish()
+                        finishAffinity()
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         dismissProgressDialog()
