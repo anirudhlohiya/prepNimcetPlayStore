@@ -25,6 +25,7 @@ class ArticleFragment : Fragment() {
         binding = FragmentArticleBinding.inflate(inflater, container, false)
         return binding?.root
     }
+    //Hello Guy's 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
