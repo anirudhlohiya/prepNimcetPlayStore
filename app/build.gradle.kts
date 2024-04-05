@@ -5,18 +5,18 @@ plugins {
 }
 
 android {
-    namespace = "com.example.prepnimcet"
+    namespace = "com.anirudh.prepnimcet"
     compileSdk = 34
     viewBinding {
         enable = true
     }
 
     defaultConfig {
-        applicationId = "com.example.prepnimcet"
+        applicationId = "com.anirudh.prepnimcet"
         minSdk = 27
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 5
+        versionName = "1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

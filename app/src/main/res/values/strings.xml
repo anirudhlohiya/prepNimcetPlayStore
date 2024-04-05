@@ -126,5 +126,6 @@
     <string name="view_answer">View Answer</string>
     <string name="user_answer">User Answer</string>
     <string name="answer">Answer</string>
+    <string name="Delete">Delete Your Account</string>
 
 </resources>
